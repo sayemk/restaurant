@@ -10,20 +10,11 @@ class Users extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->load->library('access');
+		
 		$this->load->helper('form');
 		$this->load->model('user_model');
-		
-	}
-
-	public function login()
-	{
-		$this->load->helper('form');
-		
-		$this->load->view('users/login');
-	}
-
-	public function loggedIn()
-	{
 		
 	}
 

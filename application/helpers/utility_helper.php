@@ -39,34 +39,11 @@ if ( ! function_exists('array_keys_check'))
 
 if ( ! function_exists('custom_message'))
 {
-	function custom_message($type, $message) {
+	function custom_message($type='info', $message) {
 		
-		$retString='';
-		if($type=='success'){
-			$retString .='<div class="alert alert-success alert-dismissible fade in" role="alert">
-				      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				      <span aria-hidden="true">&times;</span></button>'.$message.' </div>';
-		}
-
-		if($type=='info'){
-			$retString .='<div class="alert alert-info alert-dismissible fade in" role="alert">
-				      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				      <span aria-hidden="true">&times;</span></button>'.$message.' </div>';
-		}
-
-		if($type=='warning'){
-			$retString .='<div class="alert alert-warning alert-dismissible fade in" role="alert">
-				      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				      <span aria-hidden="true">&times;</span></button>'.$message.' </div>';
-		}
-
-		if($type=='danger'){
-			$retString .='<div class="alert alert-danger alert-dismissible fade in" role="alert">
-				      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				      <span aria-hidden="true">&times;</span></button>'.$message.' </div>';
-		}
-
-		return $retString;
+		return '<div class="alert alert-'.$type.' alert-dismissible fade in" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				 <span aria-hidden="true">&times;</span></button>'.$message.' </div>';
 	   
 	}
 }

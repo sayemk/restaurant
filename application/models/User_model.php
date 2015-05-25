@@ -32,5 +32,26 @@ class User_model extends CI_Model {
 		}
 	}
 
+	public function find($id)
+	{
+		$query = $this->db->get_where('users', array('id' => $id), 1);
+		if ($query->num_rows()==1) {
+			return $query->result();
+		} else {
+			return 0;
+		}
+		
+	}
+
+	public function get_where($where)
+	{
+		$query = $this->db->get_where('users', $where, 1);
+		if ($query->num_rows()==1) {
+			return $query->result();
+		} else {
+			return 0;
+		}
+	}
+
 
 }
