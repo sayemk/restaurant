@@ -46,12 +46,20 @@ class User_model extends CI_Model {
 	public function get_where($where)
 	{
 		$query = $this->db->get_where('users', $where, 1);
-		if ($query->num_rows()==1) {
+		if ($query->num_rows() > 0) {
 			return $query->result();
 		} else {
 			return 0;
 		}
 	}
+
+	public function get($limit=20, $offset=0)
+	{
+		$query = $this->db->get('users', $limit, $offset);
+		return $query->result();
+	}
+
+
 
 
 }

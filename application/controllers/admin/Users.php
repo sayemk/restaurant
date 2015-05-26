@@ -18,6 +18,18 @@ class Users extends CI_Controller {
 		
 	}
 
+	public function index($page = 0)
+	{
+		$this->load->library('pagination');
+		
+		if ($page>0) {
+			
+		} else {
+			# code...
+		}
+		
+	}
+
 	public function add()
 	{
 		$data['title']='Add New User';
