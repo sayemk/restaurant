@@ -25,8 +25,8 @@
 
 			  
 			  	<?php 
-				  	echo validation_errors();
-					echo form_open('users/loggedIn', array('class'=>'form-horizontal'));  
+				  	if(validation_errors()) echo custom_message('info',validation_errors());
+					echo form_open('admin/access/login', array('class'=>'form-horizontal'));  
 				?>
 				  <div class="form-group">
 				    <label for="username" class="col-sm-2 control-label">Username</label>
