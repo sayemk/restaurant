@@ -11,7 +11,7 @@ class Access
 
         $this->ci->load->library('session');
 
-        if(! $this->ci->session->username && ! $this->ci->session->type) {
+        if(! $this->ci->session->username && ! $this->ci->session->type == 'Admin') {
 
         	redirect('admin/access/',301);
     	}else {

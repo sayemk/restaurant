@@ -18,15 +18,22 @@ class Users extends CI_Controller {
 		
 	}
 
-	public function index($page = 0)
+	public function index($offset = 0)
 	{
+
+		$config['total_rows'] = $this->user_model->count();
+		$config['base_url']=base_url().'index.php/admin/users/index/';
+		$config['per_page'] = 20;
+		$data['users'] = $this->user_model->get($config['per_page'], $offset);
+
 		$this->load->library('pagination');
-		
-		if ($page>0) {
-			
-		} else {
-			# code...
-		}
+		$this->pagination->initialize($config);
+
+		$head['title']='User List';
+
+		$this->load->view('partials/head',$head);
+
+		$this->load->view('users/index', $data);
 		
 	}
 
@@ -75,10 +82,7 @@ class Users extends CI_Controller {
 		        array(
 		                'field' => 'group',
 		                'label' => 'User Group',
-		                'rules' => 'required|numeric',
-		                 'errors' => array(
-		                        'numeric' => 'Don\'t temper data',
-		                ),
+		                'rules' => 'required',
 		        )
 			);
 			
@@ -125,7 +129,7 @@ class Users extends CI_Controller {
 			    
              	$this->session->set_flashdata('userFlashData', custom_message('success',$message));
 
-             	redirect('admin/users/info/',301);
+             	redirect('admin/info/',301);
             
              }else {
 
@@ -133,21 +137,111 @@ class Users extends CI_Controller {
 			    
              	$this->session->set_flashdata('userFlashData', custom_message('info',$message));
 
-             	redirect('admin/users/info/',301);
+             	redirect('admin/info/',301);
 
              }
 
         }
     }
 
-	public function info()
+    public function view($offset=0)
     {
-    	$data['info']=$this->session->flashdata('userFlashData');
-    	$head['title']='Info Page';
+    	$post['filter'] = $this->input->get('filter');
+    	$post['data'] = $this->input->get('data');
 
-		$this->load->view('partials/head',$head);
+    	$this->load->library('form_validation');
+    	$this->form_validation->set_data($post);
 
-		$this->load->view('info',$data);
+    	$rules = array(
+					array(
+			                'field' => 'filter',
+			                'label' => 'option',
+			                'rules' => 'required',
+			                'errors' => array(
+		                        'required' => 'You must select a %s',
+		                	),
+			        ),
+			        array(
+			                'field' => 'data',
+			                'label' => 'Data field',
+			                'rules' => 'required',
+			                'errors' => array(
+		                        'required' => 'You must provide a value for %s',
+		                	),
+			        ),
+		        );
+    	
+
+    	$this->form_validation->set_rules($rules);
+
+    	if ($this->form_validation->run() == FALSE)
+        {
+            $config['total_rows'] = $this->user_model->count();
+			$config['base_url']=base_url().'index.php/admin/users/index/';
+			$config['per_page'] = 20;
+			$data['users'] = $this->user_model->get($config['per_page'], $offset);
+
+			$this->load->library('pagination');
+			$this->pagination->initialize($config);
+
+			$head['title']='User List';
+
+			$this->load->view('partials/head',$head);
+
+			$this->load->view('users/index', $data);
+        } else {
+
+        	$filter = $this->input->get('filter');
+        	$value = $this->input->get('data');
+        	$conditions=array($filter=>$value);
+        	
+    		$config['total_rows'] = $this->user_model->count($conditions);
+			$config['base_url']=base_url().'index.php/admin/users/index/';
+			$config['per_page'] = 10000;
+			$data['users'] = $this->user_model->get($config['per_page'], $offset, $conditions);
+
+			$this->load->library('pagination');
+			$this->pagination->initialize($config);
+
+			$head['title']='User List';
+
+			$this->load->view('partials/head',$head);
+
+			$this->load->view('users/index', $data);
+
+        } 
+
+    	
+    }
+
+    public function show($id)
+    {
+    	$data= $this->user_model->getWithAddress($id);
+    	$head['title']='User Details';
+
+    	$this->load->view('partials/head',$head);
+
+		$this->load->view('users/show', $data);
+    }
+
+    public function delete($id)
+    {
+    	if ($this->user_model->delete($id)) {
+    		$message = ' <strong>Success!</strong> User deleted';
+			    
+	     	$this->session->set_flashdata('userFlashData', custom_message('danger',$message));
+
+	     	redirect('admin/info/',301);
+    	} else {
+    		$message = ' <strong>Fail!</strong> Unable to delete user. Please try again later!';
+			    
+	     	$this->session->set_flashdata('userFlashData', custom_message('info',$message));
+
+	     	redirect('admin/info/',301);
+    	}
+    	
+
+    	
     }
 
 } //End of Class

@@ -2,7 +2,7 @@
 		<div class="col-md-1">&nbsp;</div>
 	  	
 	  	<div class="col-md-6">
-	  	<h2>Create A New Contact</h2>
+	  	<h2>Create A New User</h2>
 	  		
 			<?php 
 				if(validation_errors())
@@ -19,8 +19,8 @@
 		  <div class="form-group">
 		   <label for="group">Select User Group </label>
 		    <select name="group" class="form-control">
-			  <option value="777">Admin</option>
-			  <option value="666">User</option>
+			  <option value="Admin">Admin</option>
+			  <option value="Customer">Customer</option>
 			  
 			</select>
 		    

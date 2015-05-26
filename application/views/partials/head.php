@@ -20,11 +20,12 @@
 	</title>
 </head>
 <body>
+<br>
 <div class="container-fluid">
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse ">
 		 <div class="container-fluid">
 		 	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			    <ul class="nav navbar-nav">
+			    <ul class="nav navbar-nav pull-right">
 			    	<li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users<span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
@@ -59,10 +60,10 @@
 			            
 			          </ul>
 			        </li>
+			         <li ><?php echo anchor('admin/access/logout', 'Logout', null); ?></li>
 			    </ul>
 			 </div>
 		 </div>  
 	</nav>
 
-	<div class="row"></div>
-  		<div class="col-md-10">
+<div class="col-md-12">
