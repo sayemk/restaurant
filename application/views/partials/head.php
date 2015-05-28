@@ -60,13 +60,13 @@
 			          </ul>
 			        </li>
 			       
-			        <li class="dropdown">
+			        <!--li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contacts <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
 			            
 			            
 			          </ul>
-			        </li>
+			        </li-->
 			         <li ><?php echo anchor('admin/access/logout', 'Logout', null); ?></li>
 			    </ul>
 			 </div>
