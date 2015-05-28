@@ -239,9 +239,7 @@ class Users extends CI_Controller {
 
 	     	redirect('admin/info/',301);
     	}
-    	
-
-    	
+    	   	
     }
 
 } //End of Class
