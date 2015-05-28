@@ -5,38 +5,26 @@
 	  	<h2>Create A New User</h2>
 	  		
 			<?php 
-				if(validation_errors())
-				{
-					?>
-					<div class="alert alert-warning alert-dismissible fade in" role="alert">
-				      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				      <strong>Holy guacamole!</strong> <?php echo validation_errors(); ?>
-				    </div>
-			<?php
-				}
-				echo form_open('admin/users/create', array('class'=>'form-horizontal')); 
-			?>
+				  	if(validation_errors()) echo custom_message('info',validation_errors());
+					echo form_open('admin/restaurant/save', array('class'=>'form-horizontal'));  
+				?>
+
 		  <div class="form-group">
-		   <label for="group">Select User Group </label>
-		    <select name="group" class="form-control">
-			  <option value="Admin">Admin</option>
-			  <option value="Customer">Customer</option>
-			  
-			</select>
-		    
-		  </div>
-			
-		  <div class="form-group">
-		    <label for="name">Full Name</label>
+		    <label for="name">Name</label>
 		    
 		      <input name="name" value="<?php echo set_value('name'); ?>" type="text" class="form-control" id="name" placeholder="Full Name">
 		   
+		  </div>
+		  <div class="form-group">
+		    <label for="description">Description</label>
+		    
+		      <textarea name="description" id="description" class="form-control" rows="4"><?php echo set_value('description') ?></textarea>
 		  </div>
 
 		  <div class="form-group">
 		    <label for="phone">Phone Number</label>
 		    
-		      <input required value="<?php echo set_value('phone'); ?>" name="phone" type="text" class="form-control" id="phone" placeholder="Phone number">
+		      <input value="<?php echo set_value('phone'); ?>" name="phone" type="text" class="form-control" id="phone" placeholder="Phone number">
 		    
 		  </div>
 		  <div class="form-group">
@@ -46,25 +34,77 @@
 		    
 		  </div>
 		  <div class="form-group">
-		    <label for="username">Username</label>
+		    <label for="username">website</label>
 		    
-		      <input required value="<?php echo set_value('username'); ?>" name="username" type="text" class="form-control" id="username" placeholder="Username">
+		      <input value="<?php echo set_value('website'); ?>" name="website" type="text" class="form-control" id="website" placeholder="Website">
 		    
 		  </div>
+		  <fieldset>
+		  <legend>Service Hour</legend>
+			  <div class="form-group">
+			    <label for="start">Start Hour</label>
+			        <input value="<?php echo set_value('start'); ?>" name="start" type="text" class="form-control" id="start" placeholder="Start time 12:30">
+			   </div>
 
-		  <div class="form-group">
-		    <label for="password">Password</label>
-		    
-		      <input required value="<?php echo set_value('password'); ?>" name="password" type="password" class="form-control" id="password" placeholder="Password">
-		    
-		  </div>
+			  <div class="form-group">
+			    <label for="close">Closing Hour</label>
+			    	
+			       <input value="<?php echo set_value('close'); ?>" name="close" type="text" class="form-control" id="close" placeholder="Close Time 22:30">    
+			  </div>
+		  </fieldset>
 
-		  <div class="form-group">
-		    <label for="conf_password">Confirm Password</label>
-		    
-		      <input required value="<?php echo set_value('conf_password'); ?>" name="conf_password" type="password" class="form-control" id="conf_password" placeholder="Confirm Password">
-		    
-		  </div>
+		  <fieldset>
+		  <legend>Map Features</legend>
+			  <div class="form-group">
+			    <label for="latitude">Latitude</label>
+			        <input value="<?php echo set_value('latitude'); ?>" name="latitude" type="text" class="form-control" id="latitude" placeholder="Latitude like 12025445">
+			   
+			  </div>
+
+			  <div class="form-group">
+			    <label for="longitude">Longitude</label>
+			    	
+			       <input value="<?php echo set_value('longitude'); ?>" name="longitude" type="text" class="form-control" id="longitude" placeholder="Longitude like 12256155">    
+			  </div>
+		  </fieldset>
+		  <fieldset>
+		  <legend>Address</legend>
+			  <div class="form-group">
+			    <label for="adress_line">Address Line</label>
+			        <input value="<?php echo set_value('address_line'); ?>" name="address_line" type="text" class="form-control" id="address_line" placeholder="Address line">
+			   
+			  </div>
+
+			  <div class="form-group">
+			    <label for="city">City</label>
+			    	
+			       <input value="<?php echo set_value('city'); ?>" name="city" type="text" class="form-control" id="city" placeholder="City">    
+			  </div>
+			  <div class="form-group">
+			    <label for="state">State</label>
+			    	
+			       <input value="<?php echo set_value('state'); ?>" name="state" type="text" class="form-control" id="state" placeholder="State">    
+			  </div>
+			  <div class="form-group">
+			    <label for="zip">Zip Code</label>
+			    	
+			       <input value="<?php echo set_value('zip'); ?>" name="zip" type="text" class="form-control" id="zip" placeholder="Zip Code">    
+			  </div>
+			  <div class="form-group">
+			    <label for="country">Country</label>
+			    	<select name="country" class="form-control">
+			    		<option></option>
+			    		<?php 
+			    			foreach ($countries as $country) {
+			    				?>
+			    					<option <?php if(set_value('country')==$country->name) echo 'selected' ?> value="<?php echo $country->name?>"><?php echo $country->name ?></option>
+			    				<?php
+			    			}
+			    		 ?>
+			    	</select>	
+			      
+			  </div>
+		  </fieldset>
 			  
 		  
 		  <div class="form-group">
@@ -79,6 +119,9 @@
  
 </div> <!-- End of row -->
 </div>
-
+<!--script type="text/javascript">
+            $('#start').timepicker();
+            $('#close').timepicker();
+        </script-->
 </body>
 </html>
