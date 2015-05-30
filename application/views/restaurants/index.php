@@ -1,4 +1,4 @@
-<h1>User List</h1>
+<h1>Restaurant List</h1>
 <?php 
 	if (validation_errors()) {
 		echo custom_message('info', validation_errors());	
