@@ -56,6 +56,7 @@
 			          	
 			            <li class="divider"></li>
 			             <li><?php echo anchor('admin/meal_category/create', 'Add New Category', null); ?></li>
+			              <li><?php echo anchor('admin/meal_category/index', 'View All Category', null); ?></li>
 			            
 			          </ul>
 			        </li>
