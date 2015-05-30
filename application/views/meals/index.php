@@ -1,4 +1,4 @@
-<h1>User List</h1>
+<h1>Meal List</h1>
 <?php 
 	if (validation_errors()) {
 		echo custom_message('info', validation_errors());	
@@ -8,12 +8,12 @@
 
 <div class=" pull-right">
 	
-<?php echo form_open('admin/users/view',array('class'=>'form-inline','method'=>'GET')); ?>
+<?php echo form_open('admin/meal/view',array('class'=>'form-inline','method'=>'GET')); ?>
   <div class="form-group">
    <label for="filter">Filter By </label>
     <select name="filter" class="form-control">
      
-	  <option value="id">ID</option>
+	  <option value="meals.id">ID</option>
 	  <option value="slug">Slug</option>
 	  <option value="category_id">Category Id</option>
 	  

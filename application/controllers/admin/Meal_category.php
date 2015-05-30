@@ -88,6 +88,8 @@ class Meal_category extends CI_Controller {
 
     public function edit($id)
     {
+    	 $this->session->set_flashdata('cat_id',$id);
+
     	 $data['category'] = $this->meal_category_model->find($id);
     	 $head['title'] = 'Edit Meal Category';
     	 $this->load->view('partials/head',$head);
@@ -110,7 +112,12 @@ class Meal_category extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
         {
-            $data['category'] = $this->meal_category_model->find($id);
+             
+             $id = $this->session->flashdata('cat_id');
+
+             $this->session->set_flashdata('cat_id',$id);
+
+             $data['category'] = $this->meal_category_model->find($id);
 	    	 $head['title'] = 'Edit Meal Category';
 	    	 $this->load->view('partials/head',$head);
 	    	 $this->load->view('meal_categories/edit', $data);
@@ -119,7 +126,7 @@ class Meal_category extends CI_Controller {
 
         	$data['name'] = $this->input->post('name');
         	$data['description'] = $this->input->post('description');
-        	$id = $this->input->post('id');
+        	$id = $this->session->flashdata('cat_id');
 
         	if ($this->meal_category_model->update($data, $id)) {
         		
