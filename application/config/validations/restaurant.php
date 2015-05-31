@@ -64,4 +64,30 @@
 		                'rules' => 'required',
 		        )
 			);
+
+	$config['restaurant_meal'] = array(
+				array(
+		                'field' => 'restaurant',
+		                'label' => 'Restaurant',
+		                'rules' => 'required|numeric'
+		        ),
+		        array(
+		                'field' => 'meal',
+		                'label' => 'Meals',
+		                'rules' => 'required|numeric',
+		                'errors' => array(
+		                        'required' => 'You must provide a %s.',
+		                ),
+		        ),
+		        array(
+		                'field' => 'price',
+		                'label' => 'price',
+		                'rules' => 'required|numeric',
+		                'errors' => array(
+		                        'required' => 'You must provide a %s.',
+		                ),
+		        ),
+		        
+		        
+			);
  ?>

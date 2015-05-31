@@ -61,6 +61,12 @@ class Meal_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function getSelect()
+	{
+		$this->db->select('id,name');
+		return $this->db->get($this->table)->result();
+	}
 	
 
 }

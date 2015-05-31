@@ -45,7 +45,7 @@
 			            <li><?php echo anchor('admin/restaurant/create', 'Add New', null); ?></li>
 			            <li><?php echo anchor('admin/restaurant', 'View All', null); ?></li>
 			            <li class="divider"></li>
-			            <li><?php echo anchor('admin/restaurant/meal', 'Add Meals', null); ?></li>
+			            <li><?php echo anchor('admin/restaurant_meal/add', 'Add Meals', null); ?></li>
 			            
 			          </ul>
 			        </li>
