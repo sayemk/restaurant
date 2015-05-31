@@ -206,6 +206,11 @@ class Restaurant extends CI_Controller {
 		
 	}
 
+	public function meal()
+	{
+		# code...
+	}
+
 }
 
 /* End of file Restaurant.php */
