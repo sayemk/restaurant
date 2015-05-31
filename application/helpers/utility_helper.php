@@ -48,4 +48,15 @@ if ( ! function_exists('custom_message'))
 	}
 }
 
+if ( ! function_exists('create_slug'))
+{
+	function create_slug($string){
+	   $string=preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+	   $string = preg_replace( '/[«»“”!?,.]+/', '', $string );
+	   return strtolower($string);
+	}
+}
+
+
+
 ?>

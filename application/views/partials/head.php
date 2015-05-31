@@ -43,9 +43,9 @@
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Restaurants <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
 			            <li><?php echo anchor('admin/restaurant/create', 'Add New', null); ?></li>
-			            
-			            <li class="divider"></li>
 			            <li><?php echo anchor('admin/restaurant', 'View All', null); ?></li>
+			            <li class="divider"></li>
+			            <li><?php echo anchor('admin/restaurant/meal', 'Add Meals', null); ?></li>
 			            
 			          </ul>
 			        </li>
@@ -53,10 +53,11 @@
 			      	<li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Meals <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
-			          	
+			          	<li><?php echo anchor('admin/meal/create', 'Add New Meal', null); ?></li>
+			          	<li><?php echo anchor('admin/meal/', 'View Meals', null); ?></li>
 			            <li class="divider"></li>
-			             <li><?php echo anchor('admin/meal_category/create', 'Add New Category', null); ?></li>
-			              <li><?php echo anchor('admin/meal_category/index', 'View All Category', null); ?></li>
+			            <li><?php echo anchor('admin/meal_category/create', 'Add New Category', null); ?></li>
+			            <li><?php echo anchor('admin/meal_category/index', 'View All Category', null); ?></li>
 			            
 			          </ul>
 			        </li>
