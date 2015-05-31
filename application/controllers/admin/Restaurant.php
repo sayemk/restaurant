@@ -18,7 +18,10 @@ class Restaurant extends CI_Controller {
 		$this->load->model('country_model');
 
 		$this->load->model('restaurant_model');
+
 		$this->load->model('address_model');
+
+		$this->load->model('meal_model');
 	}
 
 	public function index($offset = 0)
@@ -208,7 +211,12 @@ class Restaurant extends CI_Controller {
 
 	public function meal()
 	{
-		# code...
+		$head['title']='Add Meals to Restaurant';
+
+    	$this->load->view('partials/head',$head);
+
+    	$data['restaurants'] =$this->restaurant_model->getSelect();
+    	$data['meals'] ='';
 	}
 
 }
