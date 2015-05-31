@@ -81,39 +81,6 @@
 										}
 									?>
 								</address>
-								<!-- <table class="table table-bordered">
-									<tbody>
-										
-										<tr>
-											<td>Address</td>
-											<td><?php echo $address->address_line_1 ?></td>
-										</tr>
-										<tr>
-											<td>City</td>
-											<td><?php echo $address->city ?></td>
-										</tr>
-										<tr>
-											<td>State</td>
-											<td><?php echo $address->state ?></td>
-										</tr>
-										<tr>
-											<td>Country</td>
-											<td><?php echo $address->country ?></td>
-										</tr>
-										<tr>
-											<td>Member Address</td>
-											<td>
-											<?php 
-												if ($address->is_member_add) {
-													echo 'Yes';
-												}else {
-													echo 'No';
-												}
-											?>
-											</td>
-										</tr>
-									</tbody>
-								</table> -->
 							</td>
 						</tr>
 						
