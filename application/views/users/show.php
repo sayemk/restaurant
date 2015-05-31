@@ -67,7 +67,21 @@
 						<tr>
 							<td><?php echo $address->name; ?></td>
 							<td>
-								<table class="table table-bordered">
+								<address>
+									<strong><?php echo $address->address_line_1 ?></strong><br>
+									<?php echo !empty($address->city) ? $address->city : '' ?>
+									<?php echo !empty($address->state) ? ', '.$address->state : ''?><br>
+									<?php echo $address->country ?><br>
+									<?php 
+										echo "<strong>Member Address: </strong>";
+										if ($address->is_member_add) {
+											echo 'Yes';
+										}else {
+											echo 'No';
+										}
+									?>
+								</address>
+								<!-- <table class="table table-bordered">
 									<tbody>
 										
 										<tr>
@@ -99,7 +113,7 @@
 											</td>
 										</tr>
 									</tbody>
-								</table>
+								</table> -->
 							</td>
 						</tr>
 						
