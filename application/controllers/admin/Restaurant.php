@@ -178,6 +178,39 @@ class Restaurant extends CI_Controller {
         } 
 	}
 
+	public function show($id)
+	{
+		$data= $this->restaurant_model->getWithAddress($id);
+    	$head['title']='User Details';
+
+    	$this->load->view('partials/head',$head);
+
+		$this->load->view('restaurants/show', $data);
+	}
+
+	public function delete($id)
+	{
+		if ($this->restaurant_model->delete($id)) {
+    		$message = ' <strong>Success!</strong> Restaurant deleted';
+			    
+	     	$this->session->set_flashdata('userFlashData', custom_message('success',$message));
+
+	     	redirect('admin/info/',301);
+    	} else {
+    		$message = ' <strong>Fail!</strong> Unable to delete restaurant. Please try again later!';
+			    
+	     	$this->session->set_flashdata('userFlashData', custom_message('info',$message));
+
+	     	redirect('admin/info/',301);
+    	}
+		
+	}
+
+	public function meal()
+	{
+		# code...
+	}
+
 }
 
 /* End of file Restaurant.php */

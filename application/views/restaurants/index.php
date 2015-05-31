@@ -1,4 +1,4 @@
-<h1>User List</h1>
+<h1>Restaurant List</h1>
 <?php 
 	if (validation_errors()) {
 		echo custom_message('info', validation_errors());	
@@ -61,11 +61,11 @@
  				<td><?php echo $restaurant->status; ?></td>
 
  				<td>
- 					<?php echo anchor('admin/users/show/'.$restaurant->id, '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/restaurant/show/'.$restaurant->id, '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>'); ?>
  					&nbsp;
- 					<?php echo anchor('admin/users/edit/'.$restaurant->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/restaurant/edit/'.$restaurant->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
  					&nbsp;
- 					<?php echo anchor('admin/users/delete/'.$restaurant->id, '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/restaurant/delete/'.$restaurant->id, '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'); ?>
  				</td>
  				
  			</tr>
