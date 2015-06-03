@@ -6,7 +6,7 @@
 	  		
 			<?php 
 				  	if(validation_errors()) echo custom_message('info',validation_errors());
-				  	if(@$errors) print_r($errors);
+				  	if(@$errors) echo $errors['error'];
 
 				  	if($this->session->flashdata('userFlashData'))
 				  		echo $this->session->flashdata('userFlashData');
@@ -50,7 +50,7 @@
 			    </div>
 			</div>
 			<div class="form-group">
-			    <img src="<?php echo base_url().'/uploads/images/'.$restaurant_meal[0]->image_name ?>">
+			    <img class="form-iamge"src="<?php echo base_url().'/uploads/images/'.$restaurant_meal[0]->image_name ?>">
 			 </div>
 
 			 <div class="form-group">

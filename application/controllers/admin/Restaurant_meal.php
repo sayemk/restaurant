@@ -66,7 +66,7 @@ class Restaurant_meal extends CI_Controller {
 
 	    	$this->load->view('restaurant_meals/meal', $data);
         }else {
-        	$this->load->library('image_upload');
+        	
         	$config['upload_path'] = './uploads/images/';
 			$config['allowed_types'] = 'jpg|jpeg|png';
 			$config['max_size']             =1024;
@@ -219,11 +219,10 @@ class Restaurant_meal extends CI_Controller {
     	if ($this->form_validation->run() == FALSE)
         {
         	
-        	$id = $this->session->flashdata('rm_id');
 
-            $this->session->set_flashdata('rm_id',$id);
+            $this->session->set_flashdata('rm_id',$this->session->flashdata('rm_id'));
            
-            $this->session->set_flashdata('rm_id', $this->session->flashdata('image_id'));
+            $this->session->set_flashdata('image_id', $this->session->flashdata('image_id'));
 
 
 
@@ -262,7 +261,7 @@ class Restaurant_meal extends CI_Controller {
 
 		            $this->session->set_flashdata('rm_id',$id);
 		           
-		            $this->session->set_flashdata('rm_id', $this->session->flashdata('image_id'));
+		            $this->session->set_flashdata('image_id', $this->session->flashdata('image_id'));
 
 			    	$this->load->view('restaurant_meals/edit', $data);
 
@@ -278,15 +277,16 @@ class Restaurant_meal extends CI_Controller {
         	}
         			
 				
-				$data['meal_id']=$this->input->post('meal');
-				$data['restaurant_id']=$this->input->post('restaurant');
-				$data['price']=$this->input->post('price');
-				$data['image_id'] = $this->session->flashdata('image_id');
+				$rm_data['meal_id']=$this->input->post('meal');
+				$rm_data['restaurant_id']=$this->input->post('restaurant');
+				$rm_data['price']=$this->input->post('price');
+				$rm_data['image_id'] = $this->session->flashdata('image_id');
 				$rm_id = $this->session->flashdata('rm_id');
 
 				$conditions = array('id'=>$rm_id);
 
-				if ($this->restaurant_meal_model->update($data,$conditions)) {
+								
+				if ($this->restaurant_meal_model->update($rm_data,$conditions)) {
 					$message = ' <strong>Success!</strong> Meal to Restaurant updated successfully ';
 				    
 	             	$this->session->set_flashdata('userFlashData', custom_message('success',$message));

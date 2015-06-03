@@ -40,7 +40,7 @@ class Restaurant_meal_model extends CI_Model {
 	{
 		try {
 			$this->db->where($conditions);
-			$this->db->update($this->table, $data);
+			$this->db->update($this->table, $data, $conditions);
 			return TRUE;
 		} catch (Exception $e) {
 			log_message('error', $e->getMessage());
