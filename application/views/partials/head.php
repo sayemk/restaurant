@@ -72,6 +72,7 @@
 			            
 			          </ul>
 			        </li-->
+			        <li ><?php echo anchor('admin/order', 'Orders', null); ?></li>
 			         <li ><?php echo anchor('admin/access/logout', 'Logout', null); ?></li>
 			    </ul>
 			 </div>
