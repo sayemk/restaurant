@@ -1,6 +1,6 @@
 fieldset {
 	padding: 0.35em 0.625em 0.75em;
-	border: 1px solid silver;
+	/*border: 1px solid silver;*/
 }
 legend {
 	width: auto;

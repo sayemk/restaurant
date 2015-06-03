@@ -1,6 +1,6 @@
 <h3>Restaurant Details</h3>
 <div class=" col-md-8 pull-right"> </div>
-<div class="col-md-4">
+<div class="col-md-6">
 	<table class="table table-bordered">
 
 	 <tbody>
@@ -99,16 +99,16 @@
 	</table>
 </div>
 
-<div class="col-md-4 col-md-offset-2">
+<!--div class="col-md-4 col-md-offset-2">
 	<div class="thumbnail">
 		<img src="http://www.comohotels.com/metropolitanbangkok/sites/default/files/styles/background_image/public/images/background/metbkk_bkg_nahm_restaurant.jpg?itok=GSmnYYaU" alt="Reataurent Image">
-		<!-- <div class="caption">
+		 <div class="caption">
 			<h3>Caption here</h3>
 			<p>...</p>
 			<p><a href="#" class="btn btn-default" role="button">Button</a></p>
-		</div> -->
+		</div> 
 	</div>
-</div>
+</div> -->
 
  </div> <!--End of col-md-12-->
  
