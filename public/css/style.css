@@ -1,0 +1,12 @@
+fieldset {
+	padding: 0.35em 0.625em 0.75em;
+	border: 1px solid silver;
+}
+legend {
+	width: auto;
+	border-bottom: none;
+}
+.table-image {
+	max-width: 50px;
+	max-height: 50px;
+}

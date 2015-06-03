@@ -6,12 +6,14 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-<script type="text/javascript" src="<?php echo base_url(); ?>/public/css/jquery.timepicker.min.css"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>public/css/bootstrap-datetimepicker.min.css"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/css/style.css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>public/js/moment.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>/public/js/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>/public/js/bootstrap-datetimepicker.min.js"></script>
 	
 	<title>
 		<?php 

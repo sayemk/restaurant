@@ -57,67 +57,57 @@
 	 				 	?>
 	 				 </td>
 	 			</tr>
+	 			<tr>
+	 				<th>Address</th>
+	 				<td>
+	 					<?php 
+							if (!empty($addresses)) {
+
+						?>
+							<table class="table">
+					  			<thead>
+					  				<?php 
+					  					foreach ($addresses as $address) {
+									?>
+											<tr>
+												<td style="padding:0">
+													<address>
+														<strong><?php echo $address->address_line_1 ?></strong><br>
+														<?php echo !empty($address->city) ? $address->city : '' ?>
+														<?php echo !empty($address->state) ? ', '.$address->state : ''?><br>
+														<?php echo $address->country ?><br>
+													</address>
+												</td>
+											</tr>
+											
+
+									<?php
+					  					}
+					  				 ?>
+					  			</thead>
+					  		</table>
+
+						<?php
+							}else {
+								echo "<h3> This Restaurant has no address ";
+							}
+						 ?>
+	 				 </td>
+	 			</tr>
 	 		
 	 </tbody>
 	</table>
 </div>
 
-<div class="col-md-8">
-
-	<?php 
-		if (!empty($addresses)) {
-
-	?>
-		<table class="table table-bordered">
-  			<thead>
-  				<tr>
-  					<th>Address name</th>
-  					<th>Address</th>
-  				</tr>
-  				<?php 
-  					foreach ($addresses as $address) {
-					?>
-						<tr>
-							<td><?php echo $address->name; ?></td>
-							<td>
-								<table class="table table-bordered">
-									<tbody>
-										
-										<tr>
-											<td>Address</td>
-											<td><?php echo $address->address_line_1 ?></td>
-										</tr>
-										<tr>
-											<td>City</td>
-											<td><?php echo $address->city ?></td>
-										</tr>
-										<tr>
-											<td>State</td>
-											<td><?php echo $address->state ?></td>
-										</tr>
-										<tr>
-											<td>Country</td>
-											<td><?php echo $address->country ?></td>
-										</tr>
-										
-									</tbody>
-								</table>
-							</td>
-						</tr>
-						
-
-					<?php
-											
-  					}
-  				 ?>
-  			</thead>
-  		</table>
-
-	<?php
-		}else {
-			echo "<h3>User $user->fullname, has no address ";
-		}
-	 ?>
+<div class="col-md-4 col-md-offset-2">
+	<div class="thumbnail">
+		<img src="http://www.comohotels.com/metropolitanbangkok/sites/default/files/styles/background_image/public/images/background/metbkk_bkg_nahm_restaurant.jpg?itok=GSmnYYaU" alt="Reataurent Image">
+		<!-- <div class="caption">
+			<h3>Caption here</h3>
+			<p>...</p>
+			<p><a href="#" class="btn btn-default" role="button">Button</a></p>
+		</div> -->
+	</div>
 </div>
 
  </div> <!--End of col-md-12-->
