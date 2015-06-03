@@ -16,6 +16,24 @@ class Image_model extends CI_Model {
 		}
 	}
 
+	public function update($data=array(), $conditions=array())
+	{
+		try {
+			$this->db->where($conditions);
+			$this->db->update($this->table, $data);
+			return TRUE;
+		} catch (Exception $e) {
+			log_message('error', $e->getMessage());
+			return false;
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->db->where('id',$id);
+		$this->db->delete($this->table);
+	}
+
 }
 
 /* End of file Image_model.php */
