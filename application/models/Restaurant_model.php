@@ -123,6 +123,12 @@ class Restaurant_model extends CI_Model {
 		}
 	}
 
+	public function getSelect()
+	{
+		$this->db->select('id,name');
+		return $this->db->get($this->table)->result();
+	}
+
 
 }
 

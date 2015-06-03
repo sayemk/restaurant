@@ -18,7 +18,9 @@ class Restaurant extends CI_Controller {
 		$this->load->model('country_model');
 
 		$this->load->model('restaurant_model');
+
 		$this->load->model('address_model');
+
 	}
 
 	public function index($offset = 0)
@@ -206,10 +208,7 @@ class Restaurant extends CI_Controller {
 		
 	}
 
-	public function meal()
-	{
-		# code...
-	}
+	
 
 }
 

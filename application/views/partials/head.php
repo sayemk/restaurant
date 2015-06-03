@@ -42,10 +42,11 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Restaurants <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
-			            <li><?php echo anchor('admin/restaurant/create', 'Add New', null); ?></li>
-			            <li><?php echo anchor('admin/restaurant', 'View All', null); ?></li>
+			            <li><?php echo anchor('admin/restaurant/create', 'Add New Restaurants', null); ?></li>
+			            <li><?php echo anchor('admin/restaurant', 'View All Restaurants', null); ?></li>
 			            <li class="divider"></li>
-			            <li><?php echo anchor('admin/restaurant/meal', 'Add Meals', null); ?></li>
+			             <li><?php echo anchor('admin/restaurant_meal/index', 'View Meals', null); ?></li>
+			            <li><?php echo anchor('admin/restaurant_meal/add', 'Add Meals', null); ?></li>
 			            
 			          </ul>
 			        </li>
