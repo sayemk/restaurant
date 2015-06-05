@@ -1,4 +1,4 @@
-<h1>Meal List</h1>
+<h1>Order List</h1>
 <?php 
 	if (validation_errors()) {
 		echo custom_message('info', validation_errors());	
@@ -33,9 +33,9 @@
 <table class="table table-bordered">
  <thead>
  	<tr>
- 		<th>ID</th>
- 		<th>Name</th>
-	 	<th>Slug</th>
+ 		<th>Order ID</th>
+ 		<th>Customer</th>
+	 	<th></th>
 	 	<th>Category ID</th>
 	 	<th>Category Name</th>
 	 	<th>Price($)</th>
@@ -45,22 +45,22 @@
  </thead>
  <tbody>
  	<?php 
- 		foreach ($meals as  $meal) {
+ 		foreach ($orders as  $order) {
  			?>
  			<tr>
- 				<td><?php echo $meal->id ?></td>
- 				<td><?php echo $meal->name ?></td>
- 				<td><?php echo $meal->slug ?></td>
- 				<td><?php echo $meal->category_id ?></td>
- 				<td><?php echo $meal->cat_name ?></td>
- 				<td><?php echo $meal->price ?></td>
- 				<td><?php echo $meal->description; ?></td>
+ 				<td><?php echo $order->id ?></td>
+ 				<td><?php echo $order->name ?></td>
+ 				<td><?php echo $order->slug ?></td>
+ 				<td><?php echo $order->category_id ?></td>
+ 				<td><?php echo $order->cat_name ?></td>
+ 				<td><?php echo $order->price ?></td>
+ 				<td><?php echo $order->description; ?></td>
  				
 
  				<td>
- 					<?php echo anchor('admin/meal/edit/'.$meal->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/order/edit/'.$order->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
  					&nbsp;
- 					<?php echo anchor('admin/meal/delete/'.$meal->id, '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/order/delete/'.$order->id, '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'); ?>
  				</td>
  				
  			</tr>
