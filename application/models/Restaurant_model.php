@@ -56,9 +56,8 @@ class Restaurant_model extends CI_Model {
 			$query = $this->db->get('addresses');
 
 			$data['restaurant'] = $restaurant[0];
-			unset($restaurant);
-			$data['addresses'] = $query->result();
-
+			$addresses = $query->result();
+			$data['addresses']= $addresses[0];
 			return $data;
 
 							
@@ -127,6 +126,29 @@ class Restaurant_model extends CI_Model {
 	{
 		$this->db->select('id,name');
 		return $this->db->get($this->table)->result();
+	}
+
+
+	public function update($address = array(), $restaurant = array(), $address_id, $restaurant_id)
+	{
+		try {
+
+			$this->db->trans_start();
+			
+			$this->address_model->update($address_id , $address);
+			$this->db->where('id', $restaurant_id);	
+			$this->db->update($this->table, $restaurant);
+
+			$this->db->trans_complete();
+			return true;
+		
+						
+			
+		} catch (Exception $e) {
+			$this->db->trans_rollback();
+			log_message('error', $e->getMessage());
+			return false;
+		}
 	}
 
 
