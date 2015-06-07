@@ -50,12 +50,11 @@ class Access extends CI_Controller {
         	$username = $this->input->post('username');
 
         	$userData = $this->user_model->get_where(array('username'=>$username, 'status'=>'1'));
-
         	$sessionData['username'] = $userData[0]->username;
         	$sessionData['type'] = $userData[0]->type;
         	$sessionData['uid'] = $userData[0]->id;
         	$this->session->set_userdata($sessionData);
-
+        	
         	redirect('admin/dashboard/',301);
         }
 	}
