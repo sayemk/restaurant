@@ -51,7 +51,7 @@
  				<td><?php echo $meal->res_name ?></td>
  				<td><?php echo $meal->meal_id ?></td>
  				<td><?php echo $meal->meal_name ?></td>
- 				<td><?php echo $meal->price ?></td>
+ 				<td>$<?php printf("%.2f",$meal->price); ?></td>
  				<td><img height="50px" width="50px" class="img-rounded table-image" src="<?php echo base_url().'/uploads/images/'.$meal->image_name ?>" alt ="<?php echo $meal->image_name ?>"></td>
  				<td>
  					

@@ -53,6 +53,7 @@ class Access extends CI_Controller {
 
         	$sessionData['username'] = $userData[0]->username;
         	$sessionData['type'] = $userData[0]->type;
+        	$sessionData['id'] = $userData[0]->id;
         	$this->session->set_userdata($sessionData);
 
         	redirect('admin/dashboard/',301);

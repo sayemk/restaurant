@@ -8,14 +8,13 @@
 
 <div class=" pull-right">
 	
-<?php echo form_open('admin/meal/view',array('class'=>'form-inline','method'=>'GET')); ?>
+<?php echo form_open('admin/order/view',array('class'=>'form-inline','method'=>'GET')); ?>
   <div class="form-group">
    <label for="filter">Filter By </label>
     <select name="filter" class="form-control">
      
-	  <option value="meals.id">ID</option>
-	  <option value="slug">Slug</option>
-	  <option value="category_id">Category Id</option>
+	  <option value="orders.id">Order ID</option>
+	  <option value="orders.restaurant_id">Restaurant Id</option>
 	  
 	 
 	</select>
@@ -35,11 +34,11 @@
  	<tr>
  		<th>Order ID</th>
  		<th>Customer</th>
-	 	<th></th>
-	 	<th>Category ID</th>
-	 	<th>Category Name</th>
-	 	<th>Price($)</th>
-	 	<th>Description</th>
+	 	<th>Phone</th>
+	 	<th>Restaurant ID</th>
+	 	<th>Restaurant</th>
+	 	<th>Total Price</th>
+	 	<th>Status</th>
 	 	<th>Action</th>
  	</tr>
  </thead>
@@ -49,18 +48,17 @@
  			?>
  			<tr>
  				<td><?php echo $order->id ?></td>
- 				<td><?php echo $order->name ?></td>
- 				<td><?php echo $order->slug ?></td>
- 				<td><?php echo $order->category_id ?></td>
- 				<td><?php echo $order->cat_name ?></td>
- 				<td><?php echo $order->price ?></td>
- 				<td><?php echo $order->description; ?></td>
- 				
-
+ 				<td><?php echo $order->fullname ?></td>
+ 				<td><?php echo $order->phone ?></td>
+ 				<td><?php echo $order->restaurant_id ?></td>
+ 				<td><?php echo $order->rs_name ?></td>
+ 				<td>$<?php printf("%.2f",$order->total_price) ?></td>
+ 				<td><?php echo $order->status ?></td>
  				<td>
- 					<?php echo anchor('admin/order/edit/'.$order->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/order/show/'.$order->id, '<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>'); ?>
  					&nbsp;
- 					<?php echo anchor('admin/order/delete/'.$order->id, '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'); ?>
+ 					<?php echo anchor('admin/order/edit/'.$order->id, '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'); ?>
+ 					
  				</td>
  				
  			</tr>

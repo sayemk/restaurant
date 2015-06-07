@@ -58,6 +58,9 @@ class Restaurant_model extends CI_Model {
 			$data['restaurant'] = $restaurant[0];
 			$addresses = $query->result();
 			$data['addresses']= $addresses[0];
+			// echo "<pre>";
+			//  print_r($data);
+			//  exit();
 			return $data;
 
 							

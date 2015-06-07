@@ -66,24 +66,17 @@
 						?>
 							<table class="table">
 					  			<thead>
-					  				<?php 
-					  					foreach ($addresses as $address) {
-									?>
-											<tr>
-												<td style="padding:0">
-													<address>
-														<strong><?php echo $address->address_line_1 ?></strong><br>
-														<?php echo !empty($address->city) ? $address->city : '' ?>
-														<?php echo !empty($address->state) ? ', '.$address->state : ''?><br>
-														<?php echo $address->country ?><br>
-													</address>
-												</td>
-											</tr>
+					  				<tr>
+										<td style="padding:0">
+											<address>
+												<strong><?php echo $addresses->address_line_1 ?></strong><br>
+												<?php echo !empty($addresses->city) ? $addresses->city : '' ?>
+												<?php echo !empty($addresses->state) ? ', '.$addresses->state : ''?><br>
+												<?php echo $addresses->country ?><br>
+											</address>
+										</td>
+									</tr>
 											
-
-									<?php
-					  					}
-					  				 ?>
 					  			</thead>
 					  		</table>
 
