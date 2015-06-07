@@ -36,7 +36,7 @@ class Restaurant_meal extends CI_Controller {
 
 		$this->load->view('restaurant_meals/index',$data);
 	}
-	public function add()
+	public function create()
 	{
 		$head['title']='Add Meals to Restaurant';
 

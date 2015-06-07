@@ -30,16 +30,29 @@
 		 <div class="container-fluid">
 		 	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			    <ul class="nav navbar-nav pull-right">
-			    	<li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users<span class="caret"></span></a>
-			          <ul class="dropdown-menu" role="menu">
-			            <li><?php echo anchor('admin/users/add', 'Add New', null); ?></li>
-			            
-			            <li class="divider"></li>
-			            <li><?php echo anchor('admin/users', 'View All', null); ?></li>
-			            
-			          </ul>
-			        </li>
+			    	<?php if($this->session->type=='Admin') {?>
+				    	<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users<span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				            <li><?php echo anchor('admin/users/add', 'Add New', null); ?></li>
+				            
+				            <li class="divider"></li>
+				            <li><?php echo anchor('admin/users', 'View All', null); ?></li>
+				            
+				          </ul>
+				        </li>
+				        <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Meals <span class="caret"></span></a>
+				          <ul class="dropdown-menu" role="menu">
+				          	<li><?php echo anchor('admin/meal/create', 'Add New Meal', null); ?></li>
+				          	<li><?php echo anchor('admin/meal/', 'View Meals', null); ?></li>
+				            <li class="divider"></li>
+				            <li><?php echo anchor('admin/meal_category/create', 'Add New Category', null); ?></li>
+				            <li><?php echo anchor('admin/meal_category/index', 'View All Category', null); ?></li>
+				            
+				          </ul>
+				        </li>
+				        <?php } ?>
 
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Restaurants <span class="caret"></span></a>
@@ -48,23 +61,12 @@
 			            <li><?php echo anchor('admin/restaurant', 'View All Restaurants', null); ?></li>
 			            <li class="divider"></li>
 			             <li><?php echo anchor('admin/restaurant_meal/index', 'View Meals', null); ?></li>
-			            <li><?php echo anchor('admin/restaurant_meal/add', 'Add Meals', null); ?></li>
+			            <li><?php echo anchor('admin/restaurant_meal/create', 'Add Meals', null); ?></li>
 			            
 			          </ul>
 			        </li>
 			      
-			      	<li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Meals <span class="caret"></span></a>
-			          <ul class="dropdown-menu" role="menu">
-			          	<li><?php echo anchor('admin/meal/create', 'Add New Meal', null); ?></li>
-			          	<li><?php echo anchor('admin/meal/', 'View Meals', null); ?></li>
-			            <li class="divider"></li>
-			            <li><?php echo anchor('admin/meal_category/create', 'Add New Category', null); ?></li>
-			            <li><?php echo anchor('admin/meal_category/index', 'View All Category', null); ?></li>
-			            
-			          </ul>
-			        </li>
-			       
+			      			       
 			        <!--li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contacts <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
