@@ -7,7 +7,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Restaurant_model extends CI_Model {
 
+	private $conditions = array();
+
 	private $table = 'restaurants';
+
+	public function __construct()
+	{
+		parent::__construct();
+		if($this->session->type !='Admin')
+		{
+			$this->conditions = array('owner_id' =>$this->session->uid);
+		}
+	}
 
 	public function create($address = array(), $restaurant = array())
 	{
@@ -37,12 +48,16 @@ class Restaurant_model extends CI_Model {
 	public function get($limit=20, $offset=0, $conditions=array())
 	{
 		$this->db->where($conditions);
-		 return $this->db->get($this->table, $limit, $offset)->result();
+		$this->db->where($this->conditions);
+
+		return $this->db->get($this->table, $limit, $offset)->result();
 	}
 
 	public function count($conditions=array())
 	{
 		$this->db->where($conditions);
+		$this->db->where($this->conditions);
+
 		return $this->db->count_all_results($this->table);
 	}
 
@@ -53,12 +68,15 @@ class Restaurant_model extends CI_Model {
 		if($restaurant){
 
 			$this->db->where('id', $restaurant[0]->address_id);
+			$this->db->where($this->conditions);
 			$query = $this->db->get('addresses');
 
 			$data['restaurant'] = $restaurant[0];
-			unset($restaurant);
-			$data['addresses'] = $query->result();
-
+			$addresses = $query->result();
+			$data['addresses']= $addresses[0];
+			// echo "<pre>";
+			//  print_r($data);
+			//  exit();
 			return $data;
 
 							
@@ -68,9 +86,10 @@ class Restaurant_model extends CI_Model {
 
 	}
 
-	public function find($id)
+	public function find($conditions)
 	{
-		$query = $this->db->get_where($this->table, array('id' => $id), 1);
+		$this->db->where($this->conditions);
+		$query = $this->db->get_where($this->table, $conditions, 1);
 		if ($query->num_rows()==1) {
 			return $query->result();
 		} else {
@@ -81,28 +100,24 @@ class Restaurant_model extends CI_Model {
 
 	public function delete($id)
 	{
-		
-		try {
-				$addresses = $this->getAddressID($id);			
-				
-				$this->db->trans_start();
-				try {
-					foreach ($addresses as $address) {
+			
+			$this->db->trans_start();
 
+			try {
+				
+				$this->db->where('id',$id);
+				$this->db->where($this->conditions);
+				if ($this->db->delete($this->table)) {
+					foreach ($this->getAddressID($id) as $address) {
 						$this->address_model->delete($address->address_id);
 					}
-
-
-				}catch (Exception $e) {
-					log_message('debug', $e->getMessage());
+					$this->db->trans_complete();
+		
+					return true;
+				}else{
+					$this->db->trans_rollback();
 				}
 
-				$this->db->where('id',$id);
-				$this->db->delete($this->table);
-
-				$this->db->trans_complete();
-				
-				return true;
 
 			} catch (Exception $e) {
 				$this->db->trans_rollback();
@@ -114,6 +129,7 @@ class Restaurant_model extends CI_Model {
 	public function getAddressID($id)
 	{
 		$this->db->select('address_id');
+
 		$query = $this->db->get_where($this->table, array('id' =>$id));
 
 		if ($query->num_rows() > 0) {
@@ -126,7 +142,47 @@ class Restaurant_model extends CI_Model {
 	public function getSelect()
 	{
 		$this->db->select('id,name');
+		$this->db->where($this->conditions);
+
 		return $this->db->get($this->table)->result();
+	}
+
+
+	public function update($address = array(), $restaurant = array(), $address_id, $restaurant_id)
+	{
+		try {
+
+			$this->db->trans_start();
+			
+			$this->address_model->update($address_id , $address);
+			$this->db->where('id', $restaurant_id);	
+			$this->db->where($this->conditions);
+			$this->db->update($this->table, $restaurant);
+
+			$this->db->trans_complete();
+			return true;
+		
+						
+			
+		} catch (Exception $e) {
+			$this->db->trans_rollback();
+			log_message('error', $e->getMessage());
+			return false;
+		}
+	}
+
+	public function getRestaurantByowner($owner_id)
+	{
+		$this->db->select('id');
+		$this->db->where('owner_id', $owner_id);
+		$ids = $this->db->get($this->table)->result_array();
+		$retval = [];
+		foreach ($ids as $id) {
+			$retval[] = $id['id'];
+		}
+
+		return $retval;
+		
 	}
 
 

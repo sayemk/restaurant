@@ -22,6 +22,18 @@ class Address_model extends CI_Model {
 		
 	}
 
+	public function update($id, $data = array())
+	{
+		try {
+			$this->db->where('id', $id);	
+			$this->db->update($this->table, $data);
+			return TRUE;
+		} catch (Exception $e) {
+			log_message('error', $e->getMessage());
+			return false;
+		}
+	}
+
 }
 
 /* End of file Address_model.php */

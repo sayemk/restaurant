@@ -46,7 +46,6 @@
 			    <div class="input-group">
 			      <span class="input-group-addon">$</span>
 			      <input name="price" value="<?php echo $restaurant_meal[0]->price ?>" type="number" class="form-control" id="price" placeholder="price">
-			      <div class="input-group-addon">.00</div>
 			    </div>
 			</div>
 			<div class="form-group">
