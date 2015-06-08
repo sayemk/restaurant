@@ -171,6 +171,20 @@ class Restaurant_model extends CI_Model {
 		}
 	}
 
+	public function getRestaurantByowner($owner_id)
+	{
+		$this->db->select('id');
+		$this->db->where('owner_id', $owner_id);
+		$ids = $this->db->get($this->table)->result_array();
+		$retval = [];
+		foreach ($ids as $id) {
+			$retval[] = $id['id'];
+		}
+
+		return $retval;
+		
+	}
+
 
 }
 

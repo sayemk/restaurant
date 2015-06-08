@@ -5,9 +5,32 @@ class Order_model extends CI_Model {
 
 	private $table = 'orders';
 
+	private $owner_ids = array();
+	private $accessPerm = FALSE;
+
+	public function __construct()
+	{
+		parent::__construct();
+		if($this->session->type !='Admin')
+		{
+			$this->load->model('restaurant_model');
+
+			$restaurant_id = $this->restaurant_model->getRestaurantByowner($this->session->uid);
+			$this->owner_ids = $restaurant_id;
+			$this->accessPerm = TRUE;
+
+		}
+	}
+
+
 	public function count($conditions=array())
 	{
 		$this->db->where($conditions);
+
+		if ($this->accessPerm) {
+			$this->db->where_in('restaurant_id', $this->owner_ids);
+		}
+		
 		return $this->db->count_all_results($this->table);
 	}
 
@@ -21,6 +44,10 @@ class Order_model extends CI_Model {
 		$this->db->join('restaurants rs', 'rs.id = orders.restaurant_id', 'left');
 		
 		$this->db->where($conditions);
+		if ($this->accessPerm) {
+			$this->db->where_in('orders.restaurant_id',$this->owner_ids);
+		}
+
 		$this->db->order_by('id', 'desc');
 		$this->db->limit($limit, $offset);
 		return $this->db->get()->result();
@@ -37,6 +64,9 @@ class Order_model extends CI_Model {
 		$this->db->join('restaurants rs', 'rs.id = orders.restaurant_id', 'left');
 
 		$this->db->where($conditions);
+		if ($this->accessPerm) {
+			$this->db->where_in('orders.restaurant_id',$this->owner_ids);
+		}
 
 		$data['order'] = $this->db->get()->result();
 
