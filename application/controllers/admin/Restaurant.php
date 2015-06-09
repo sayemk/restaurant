@@ -28,7 +28,7 @@ class Restaurant extends CI_Controller {
 		$config['total_rows'] = $this->restaurant_model->count();
 		$config['base_url']=base_url().'index.php/admin/restaurant/index/';
 		$config['per_page'] = 20;
-
+		$conditions = array('owner_id' =>$this->session->uid);
 		$data['restaurants'] = $this->restaurant_model->get($config['per_page'], $offset);
 		
 		$this->load->library('pagination');

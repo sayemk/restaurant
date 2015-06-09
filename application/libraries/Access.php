@@ -11,11 +11,20 @@ class Access
 
         $this->ci->load->library('session');
 
-        if(! $this->ci->session->username && ! $this->ci->session->type == 'Admin') {
+        if(! $this->ci->session->username && ! $this->ci->session->type) {
 
-        	redirect('admin/access/',301);
+        	redirect('admin/access/logout',301);
+
     	}else {
-
+    		
+    		if (!$this->ci->session->type=='Admin') {
+    			
+    			if( ! $this->checkAccess()) {
+    				redirect('admin/access/logout',301);
+    			}
+	
+    		}
+    		
     		$this->lastActivity();
     	}
     	
@@ -27,6 +36,35 @@ class Access
 
 		$this->ci->db->where('username', $this->ci->session->username);
 		$this->ci->db->update('users', array('last_activity'=>time()));
+		
+	}
+
+	private function checkAccess()
+	{
+		$controller = $this->ci->router->fetch_class();	
+		$method = $this->ci->router->fetch_method();
+
+		$this->ci->config->load('acl');
+		$user_type = $this->ci->session->type;
+		foreach ($this->ci->config->item($user_type) as $accesses) {
+			// echo "<pre>";
+			// print_r($accesses);
+			// exit();
+			
+			
+			if(trim($controller) == trim($accesses['controller'])){
+				
+				foreach ($accesses['actions'] as $value) {
+					if($method == $value)
+					{
+						return TRUE;
+					}
+				}
+				return FALSE;
+			}
+			
+		}
+		return FALSE;
 		
 	}
 

@@ -20,6 +20,7 @@
 		   <label for="group">Select User Group </label>
 		    <select name="group" class="form-control">
 			  <option value="Admin">Admin</option>
+			   <option value="Restaurant">Restaurant</option>
 			  <option value="Customer">Customer</option>
 			  
 			</select>

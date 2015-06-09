@@ -5,6 +5,24 @@ class Restaurant_meal_model extends CI_Model {
 
 	private $table = 'restaurant_meals';
 
+	private $owner_ids = array();
+	private $accessPerm = FALSE;
+
+	public function __construct()
+	{
+		parent::__construct();
+		if($this->session->type !='Admin')
+		{
+			$this->load->model('restaurant_model');
+
+			$restaurant_id = $this->restaurant_model->getRestaurantByowner($this->session->uid);
+			$this->owner_ids = $restaurant_id;
+			$this->accessPerm = TRUE;
+
+		}
+	}
+
+
 	public function save($data=array())
 	{
 		$this->db->insert($this->table, $data);
@@ -25,6 +43,12 @@ class Restaurant_meal_model extends CI_Model {
 		$this->db->join('restaurants res', 'res.id = restaurant_meals.restaurant_id', 'left');
 		$this->db->limit($limit, $offset);
 		$this->db->where($conditions);
+
+		if ($this->accessPerm) {
+			$this->db->where_in('restaurant_meals.restaurant_id', $this->owner_ids);
+		}
+
+		$this->db->order_by('restaurant_meals.id', 'ASC');
 		
 		return $this->db->get()->result();
 		
@@ -33,6 +57,9 @@ class Restaurant_meal_model extends CI_Model {
 	public function count($conditions=array())
 	{
 		$this->db->where($conditions);
+		if ($this->accessPerm) {
+			$this->db->where_in('restaurant_meals.restaurant_id', $this->owner_ids);
+		}
 		return $this->db->count_all_results($this->table);
 	}
 
@@ -40,6 +67,9 @@ class Restaurant_meal_model extends CI_Model {
 	{
 		try {
 			$this->db->where($conditions);
+			if ($this->accessPerm) {
+				$this->db->where_in('restaurant_meals.restaurant_id', $this->owner_ids);
+			}
 			$this->db->update($this->table, $data, $conditions);
 			return TRUE;
 		} catch (Exception $e) {
@@ -66,6 +96,10 @@ class Restaurant_meal_model extends CI_Model {
 			}
 
 			$this->db->where('id',$id);
+
+			if ($this->accessPerm) {
+				$this->db->where_in('restaurant_meals.restaurant_id', $this->owner_ids);
+			}
 			$this->db->delete($this->table);
 
 			$this->db->trans_complete();
