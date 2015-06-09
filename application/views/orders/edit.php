@@ -1,5 +1,8 @@
 <h3>Order Details</h3>
 <div class=" col-md-8 pull-right"> </div>
+<?php 
+		if(validation_errors()) echo custom_message('info',validation_errors()); 
+	?>
 <div class="col-md-6">
 	<table class="table table-bordered">
 
@@ -30,7 +33,23 @@
 	 			</tr>
 	 			<tr>
 	 				<th>Status</th>
-	 				<td><?php echo $order[0]->status ?></td>
+	 				<td>
+
+	 				<?php echo form_open('admin/order/update', array('class'=>'form-inline')); ?>
+						
+						  <div class="form-group <?php if(validation_errors()) echo 'has-error'; ?>">
+						    <select name="status" class="form-control ">
+							  <option <?php if($order[0]->status == 'new') echo 'selected' ?> value="new">New</option>
+							  <option <?php if($order[0]->status == 'processing') echo 'selected' ?> value="processing">Proccessing</option>
+							  <option <?php if($order[0]->status == 'delivered') echo 'selected' ?> value="delivered">Delivered</option>
+							  <option <?php if($order[0]->status == 'cancel') echo 'selected' ?> value="cancel">Cancel</option>
+							</select>
+						    
+						  </div>
+						  
+						  <button type="submit" class="btn btn-default">Change</button>
+						 <?php echo form_close(); ?>
+	 				</td>
 	 			</tr>
 	 			
 	 			<tr>
@@ -109,17 +128,6 @@
 	 </tbody>
 	</table>
 </div>
-
-<!--div class="col-md-4 col-md-offset-2">
-	<div class="thumbnail">
-		<img src="http://www.comohotels.com/metropolitanbangkok/sites/default/files/styles/background_image/public/images/background/metbkk_bkg_nahm_restaurant.jpg?itok=GSmnYYaU" alt="Reataurent Image">
-		 <div class="caption">
-			<h3>Caption here</h3>
-			<p>...</p>
-			<p><a href="#" class="btn btn-default" role="button">Button</a></p>
-		</div> 
-	</div>
-</div> -->
 
  </div> <!--End of col-md-12-->
  

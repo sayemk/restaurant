@@ -117,6 +117,55 @@ class Order extends CI_Controller {
         } 
 	}
 
+	public function edit($order_id)
+	{
+		$data = $this->order_model->getDetails($order_id, array('orders.id' =>$order_id));
+		$head['title'] = 'Order Detals';
+		$this->load->view('partials/head',$head);
+
+		$this->session->set_flashdata('order_id',$order_id);
+
+		$this->load->view('orders/edit',$data);
+	}
+
+	public function update()
+	{
+		$rules = array(
+					array(
+			                'field' => 'status',
+			                'label' => 'Status',
+			                'rules' => 'required|alpha',
+			                'errors' => array(
+		                        'required' => 'You must select a %s',
+		                	),
+			        )
+		        );
+    	
+		$this->load->library('form_validation');
+    	
+    	$this->form_validation->set_rules($rules);
+
+    	if ($this->form_validation->run() == FALSE)
+        {
+        	$order_id = $this->session->flashdata('order_id');
+        	$data = $this->order_model->getDetails($order_id, array('orders.id' =>$order_id));
+			$head['title'] = 'Order Detals';
+			$this->load->view('partials/head',$head);
+
+			$this->session->set_flashdata('order_id',$order_id);
+
+			$this->load->view('orders/edit',$data);
+        }else {
+
+        	$data['id']= $this->session->flashdata('order_id');
+        	$data['status'] = $this->input->post('status');
+        	$this->order_model->update($data);
+
+        	redirect('admin/order/edit/'.$data['id'], 301);
+
+        }
+	}
+
 }
 
 /* End of file Order.php */
