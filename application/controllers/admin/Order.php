@@ -157,9 +157,9 @@ class Order extends CI_Controller {
 			$this->load->view('orders/edit',$data);
         }else {
 
-        	$data['id']= $this->session->flashdata('order_id');
+        	$order_id= $this->session->flashdata('order_id');
         	$data['status'] = $this->input->post('status');
-        	$this->order_model->update($data);
+        	$this->order_model->update($order_id, $data);
 
         	redirect('admin/order/edit/'.$data['id'], 301);
 
