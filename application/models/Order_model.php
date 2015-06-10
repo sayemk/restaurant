@@ -11,6 +11,7 @@ class Order_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
+		
 		if($this->session->type !='Admin')
 		{
 			$this->load->model('restaurant_model');
@@ -80,6 +81,22 @@ class Order_model extends CI_Model {
 		$data['meals'] = $this->db->get()->result();
 
 		return $data;
+	}
+
+	public function update($id, $data = array())
+	{
+		try {
+			$this->db->where('id', $id);
+			if ($this->accessPerm) {
+				$this->db->where_in('orders.restaurant_id',$this->owner_ids);
+			}
+			$this->db->update($this->table, $data);
+			return TRUE;
+
+		} catch (Exception $e) {
+			log_message('error', $e->getMessage());
+			return false;
+		}
 	}
 
 }
