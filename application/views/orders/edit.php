@@ -2,6 +2,9 @@
 <div class=" col-md-8 pull-right"> </div>
 <?php 
 		if(validation_errors()) echo custom_message('info',validation_errors()); 
+		
+	  	if($this->session->flashdata('userFlashData'))
+	  		echo $this->session->flashdata('userFlashData');
 	?>
 <div class="col-md-6">
 	<table class="table table-bordered">

@@ -159,10 +159,27 @@ class Order extends CI_Controller {
 
         	$order_id= $this->session->flashdata('order_id');
         	$data['status'] = $this->input->post('status');
-        	$this->order_model->update($order_id, $data);
+        	
 
-        	redirect('admin/order/edit/'.$data['id'], 301);
+        	if ($this->order_model->update($order_id, $data)) {
+        		
+        		$message = ' <strong>Success!</strong> Order status has been changed to <b>'.$data['status'].'</b> successfully ';
+			    
+             	$this->session->set_flashdata('userFlashData', custom_message('success',$message));
 
+             	redirect('admin/order/edit/'.$order_id, 301);
+
+        	} else {
+        		
+        		$message = ' <strong>Fail!</strong> Order status didn\'t change';
+			    
+             	$this->session->set_flashdata('userFlashData', custom_message('info',$message));
+
+             	redirect('admin/order/edit/'.$order_id, 301);
+
+          	}
+
+        	
         }
 	}
 
