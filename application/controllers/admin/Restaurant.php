@@ -210,13 +210,16 @@ class Restaurant extends CI_Controller {
 
 	public function edit($id)
 	{
-		$data= $this->restaurant_model->getWithAddress($id);
+		$data = $this->restaurant_model->getWithAddress($id);
     	$head['title']='Restaurant Edit';
 
     	$this->session->set_flashdata('restaurant_id',$id);
-    	$this->session->set_flashdata('address_id',$data['addresses']->id);
+    	$this->session->set_flashdata('address_id',@$data['addresses']->id);
 
-    	$data['countries'] = $this->country_model->get();
+    	//$data['countries'] = $this->country_model->get();
+
+    	//print_r($data);
+    	//exit();
 
     	$this->load->view('partials/head',$head);
 
