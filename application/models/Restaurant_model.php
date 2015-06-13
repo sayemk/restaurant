@@ -7,7 +7,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Restaurant_model extends CI_Model {
 
-	private $conditions = array();
+	private $owner_ids = array();
+	private $accessPerm = FALSE;
 
 	private $table = 'restaurants';
 
@@ -16,7 +17,9 @@ class Restaurant_model extends CI_Model {
 		parent::__construct();
 		if($this->session->type !='Admin')
 		{
-			$this->conditions = array('owner_id' =>$this->session->uid);
+			$restaurant_id = $this->getRestaurantByowner($this->session->uid);
+			$this->owner_ids = $restaurant_id;
+			$this->accessPerm = TRUE;
 		}
 	}
 
