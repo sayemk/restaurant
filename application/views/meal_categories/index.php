@@ -1,6 +1,9 @@
 <h1>Meal Category List</h1>
 
-
+<?php 
+		if($this->session->flashdata('userFlashData'))
+				  		echo $this->session->flashdata('userFlashData')
+ ?>
 
 <table class="table table-bordered">
  <thead>

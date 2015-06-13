@@ -70,10 +70,13 @@ class Restaurant_model extends CI_Model {
 	{
 		$restaurant = $this->find($id);
 
+		print_r($restaurant);
+		exit();
+
 		if($restaurant){
 
 			$this->db->where('id', $restaurant[0]->address_id);
-			$this->db->where($this->conditions);
+			//$this->db->where($this->conditions);
 			$query = $this->db->get('addresses');
 
 			$data['restaurant'] = $restaurant[0];
@@ -93,7 +96,7 @@ class Restaurant_model extends CI_Model {
 
 	public function find($conditions)
 	{
-		$this->db->where($this->conditions);
+		//$this->db->where($this->conditions);
 		$query = $this->db->get_where($this->table, $conditions, 1);
 		if ($query->num_rows()==1) {
 			return $query->result();

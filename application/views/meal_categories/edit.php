@@ -2,7 +2,7 @@
 		<div class="col-md-1">&nbsp;</div>
 	  	
 	  	<div class="col-md-6">
-	  	<h2>Create A New User</h2>
+	  	<h2>Update Meal category</h2>
 	  		
 			<?php 
 				  	if(validation_errors()) echo custom_message('info',validation_errors());

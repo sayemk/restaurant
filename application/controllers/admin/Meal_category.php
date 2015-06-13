@@ -134,7 +134,7 @@ class Meal_category extends CI_Controller {
 			    
              	$this->session->set_flashdata('userFlashData', custom_message('success',$message));
 
-             	redirect('admin/meal_category/edit/'.$id,301);
+             	redirect('admin/meal_category/index',301);
 
         	} else {
 
@@ -142,7 +142,7 @@ class Meal_category extends CI_Controller {
 			    
              	$this->session->set_flashdata('userFlashData', custom_message('info',$message));
 
-             	redirect('admin/meal_category/edit/'.$id,301);
+             	redirect('admin/meal_category/index',301);
         	}	
             
 
