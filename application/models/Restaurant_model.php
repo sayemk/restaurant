@@ -51,7 +51,9 @@ class Restaurant_model extends CI_Model {
 	public function get($limit=20, $offset=0, $conditions=array())
 	{
 		$this->db->where($conditions);
-		$this->db->where($this->conditions);
+		if ($this->accessPerm) {
+			$this->db->where_in('restaurant_id', $this->owner_ids);
+		}
 
 		return $this->db->get($this->table, $limit, $offset)->result();
 	}
